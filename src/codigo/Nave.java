@@ -21,8 +21,12 @@ public class Nave {
     private boolean pulsadoDerecha = false;
 
     
-    public Nave(){
-
+  public Nave(){
+        try {
+            imagen = ImageIO.read(getClass().getResource("/imagenes/heroecondon.jpg"));
+        } catch (IOException ex) {
+            
+        }
     }
     
     public void mueve(){

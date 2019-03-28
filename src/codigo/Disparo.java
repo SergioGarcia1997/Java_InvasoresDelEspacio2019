@@ -18,7 +18,7 @@ public class Disparo {
 
     public Disparo(){
         try {
-            imagen = ImageIO.read(getClass().getResource("/imagenes/disparo.png"));
+            imagen = ImageIO.read(getClass().getResource("/imagenes/condondisparo.png"));
         } catch (IOException ex) {
             
         }
@@ -26,7 +26,7 @@ public class Disparo {
     
     public void mueve(){
         if (disparado){
-            y-=10;
+            y-=3;
         }
     }
     
