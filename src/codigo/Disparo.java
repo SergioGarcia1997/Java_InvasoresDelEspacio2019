@@ -18,7 +18,7 @@ public class Disparo {
 
     public Disparo(){
         try {
-            imagen = ImageIO.read(getClass().getResource("/imagenes/condondisparo.png"));
+            imagen = ImageIO.read(getClass().getResource("/imagenes/karel.png"));
         } catch (IOException ex) {
             
         }

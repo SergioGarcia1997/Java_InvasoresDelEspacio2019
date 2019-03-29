@@ -18,11 +18,13 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /**
  *
- * @author Jorge Cisneros
+ * @author Sergio Garcia
  */
 public class VentanaJuego extends javax.swing.JFrame {
 
@@ -67,12 +69,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         // 4º ancho
         // 5º alto
         //6º escala
-        imagenes=cargaImagenes("/imagenes/spritesbebes.png",2,2,32,34,1);
+        imagenes=cargaImagenes("/imagenes/soldados+.png",10,10,32,32,1);
        // miDisparo.imagen=imagenes[2][2];
         
         setSize(ANCHOPANTALLA, ALTOPANTALLA);
+       
+        
         buffer = (BufferedImage) jPanel1.createImage(ANCHOPANTALLA, ALTOPANTALLA);
         buffer.createGraphics();
+          Icon imgBoton=new ImageIcon(getClass().getResource("/imagenes/infierno.jpg"));
 
         temporizador.start();
         
@@ -89,12 +94,12 @@ public class VentanaJuego extends javax.swing.JFrame {
         // 2º fila del sprite sheet que quiero seleccionar
         // 3º columna del sprite sheet que quiero seleccionar
          creaFilaDeMarcianos(0, 0 ,0);
-         creaFilaDeMarcianos(1, 0 ,0);
-         creaFilaDeMarcianos(2, 0 ,0);
-         creaFilaDeMarcianos(3, 0 ,0);
-         creaFilaDeMarcianos(4, 0 ,0);
-         creaFilaDeMarcianos(5, 0 ,0);
-         creaFilaDeMarcianos(6, 0 ,0);
+         creaFilaDeMarcianos(1, 1 ,0);
+         creaFilaDeMarcianos(2, 2 ,0);
+         creaFilaDeMarcianos(3, 3 ,0);
+         creaFilaDeMarcianos(4, 4 ,0);
+         creaFilaDeMarcianos(5, 5 ,0);
+         creaFilaDeMarcianos(6, 6 ,0);
          
         
         
@@ -236,10 +241,12 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void cambiaDireccionMarcianos() {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
+              
                 listaMarcianos[i][j].setvX(listaMarcianos[i][j].getvX()* -1);
             }
         }
     }
+    
     
     private void pintaMarcianos(Graphics2D _g2) {
 
@@ -253,17 +260,18 @@ public class VentanaJuego extends javax.swing.JFrame {
                     if (listaMarcianos[i][j].x + anchoMarciano == ANCHOPANTALLA || listaMarcianos[i][j].x == 0) {
                         direccionMarcianos = true;
                     }
-                    if (contador < 50) {
+                    if (contador < 0) {
                         _g2.drawImage(listaMarcianos[i][j].imagen1,
                                 listaMarcianos[i][j].x,
                                 listaMarcianos[i][j].y,
                                 null);
-                    } else if (contador < 100) {
+                    } else if (contador < 50) {
                         _g2.drawImage(listaMarcianos[i][j].imagen2,
                                 listaMarcianos[i][j].x,
                                 listaMarcianos[i][j].y,
                                 null);
-                    } else {
+                    } 
+                    else {
                         contador = 0;
                     }
                 }
@@ -274,6 +282,7 @@ public class VentanaJuego extends javax.swing.JFrame {
             direccionMarcianos = false;
         }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -285,6 +294,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -303,15 +313,23 @@ public class VentanaJuego extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/infierno.jpg"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 863, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(132, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(105, 105, 105))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -344,7 +362,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                 miDisparo.posicionaDisparo(miNave);
                 miDisparo.disparado = true;
            
-                 reproduce ("/sonidos/cartoon097.wav") ;
+                 reproduce ("/sonidos/yvolo.wav") ;
                  
                 }
     
@@ -408,6 +426,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

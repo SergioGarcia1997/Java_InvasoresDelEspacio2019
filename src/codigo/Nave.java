@@ -23,7 +23,7 @@ public class Nave {
     
   public Nave(){
         try {
-            imagen = ImageIO.read(getClass().getResource("/imagenes/heroecondon.jpg"));
+            imagen = ImageIO.read(getClass().getResource("/imagenes/fraxito.jpeg"));
         } catch (IOException ex) {
             
         }
